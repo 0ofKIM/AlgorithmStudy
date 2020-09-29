@@ -14,10 +14,8 @@ func solution(_ n:Int, _ lost:[Int], _ reserve:[Int]) -> Int {
     for reserver in reserveArray {
         if (lostArray.contains(reserver-1) && lostArray.contains(reserver+1)) || (lostArray.contains(reserver-1)) {
             lostArray = removeElement(lostArray, reserver-1)
-            reserveArray = removeElement(reserveArray, reserver)
         } else if lostArray.contains(reserver+1) {
             lostArray = removeElement(lostArray, reserver+1)
-            reserveArray = removeElement(reserveArray, reserver)
         }
     }
 
