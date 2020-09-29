@@ -10,7 +10,7 @@ func solution(_ n:Int, _ lost:[Int], _ reserve:[Int]) -> Int {
         }
     }
     reserve.forEach {
-        var student = $0-1
+        let student = $0-1
         if !lost.contains($0) && state[student] == 1  {
             if student > 0 && state[student-1] == 0 {
                 state[student-1] = 1
