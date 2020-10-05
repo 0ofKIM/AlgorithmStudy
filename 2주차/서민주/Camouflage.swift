@@ -1,14 +1,14 @@
 import Foundation
 
 func solution(_ clothes:[[String]]) -> Int {
-    var closet = [String : [String]]()
+    var closet = [String : Int]()
     var result = 1
-    
+
     clothes.forEach {
-        closet[$0[1]] = (closet[$0[1]] ?? []) + [$0[0]]
+        closet[$0[1]] = (closet[$0[1]] ?? 0) + 1
     }
     closet.values.forEach {
-        result *= $0.count + 1
+        result *= $0 + 1
     }
 
     return result - 1
