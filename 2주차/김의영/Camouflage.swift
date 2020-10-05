@@ -5,10 +5,8 @@ func solution(_ clothes:[[String]]) -> Int {
     var answer = 1
     
     for cloth in clothes {
-        let index = clothType.index(forKey: cloth.last!)
-
         if clothType.keys.contains(cloth.last!) {
-            clothType[clothType[index!].key]! += 1
+            clothType[cloth.last!]! += 1
         } else {
             clothType.updateValue(1, forKey: cloth.last!)
         }
