@@ -5,19 +5,12 @@ func solution(_ numbers:[Int], _ hand:String) -> String {
     var leftHandPosition = "*"
     var answer: String = ""
 
-    //    let keypadPosition = [
-    //        ["1", "2", "3"],
-    //        ["4", "5", "6"],
-    //        ["7", "8", "9"],
-    //        ["*", "0", "#"]
-    //    ]
     let keypadPosition: [String : (Int,Int)] = [
-        "1":(1,1), "2":(1,2), "3":(1,3),
-        "4":(2,1), "5":(2,2), "6":(2,3),
-        "7":(3,1), "8":(3,2), "9":(3,3),
-        "*":(4,1), "0":(4,2), "#":(4,3)
+        "1":(0,0), "2":(0,1), "3":(0,2),
+        "4":(1,0), "5":(1,1), "6":(1,2),
+        "7":(2,0), "8":(2,1), "9":(2,2),
+        "*":(3,0), "0":(3,1), "#":(3,2)
     ]
-
 
     for number in numbers {
         switch number {
@@ -44,7 +37,7 @@ func solution(_ numbers:[Int], _ hand:String) -> String {
             } else if leftDistance > rightDistance {
                 rightHandPosition = String(number)
                 answer.append("R")
-            } else {
+            } else if leftDistance == rightDistance {
                 if hand == "left" {
                     leftHandPosition = String(number)
                     answer.append("L")

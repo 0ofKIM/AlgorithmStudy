@@ -23,7 +23,6 @@ func solution(_ bridge_length:Int, _ weight:Int, _ truck_weights:[Int]) -> Int {
             waitingTruck.removeFirst()
         }
 
-        //print("경과시간: \(answer), 다리를 건너는 트럭: \(truckOnTheBridge), 대기 트럭: \(waitingTruck)")
         if truckOnTheBridge.isEmpty && waitingTruck.isEmpty {
             return answer
         }
