@@ -4,7 +4,7 @@ func solution(_ progresses:[Int], _ speeds:[Int]) -> [Int] {
     var days: [Int] = []
     var day: Double = 0
 
-    progresses.enumerated().map { (index, progress) in
+    for (index, progress) in progresses.enumerated() {
         if day < ceil(Double(100-progress) / Double(speeds[index])) {
             day = ceil(Double(100-progress) / Double(speeds[index]))
             days.append(1)

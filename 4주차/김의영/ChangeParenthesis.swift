@@ -10,11 +10,9 @@ func solution(_ p:String) -> String {
     for (index, text) in p.enumerated() {
         u.append(text)
         correct += (text == "(") ? 1 : -1
-        if correct == 0 && index+1 != p.count {
+        if correct == 0 {
             v = String(p[p.index(p.startIndex, offsetBy: index+1)...])
-        }
 
-        if (u.count%2 == 0) && (correct == 0) {
             if u.last == ")" {
                 u.append(solution(v))
 
