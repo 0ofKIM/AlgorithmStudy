@@ -4,10 +4,10 @@ func solution(_ priorities:[Int], _ location:Int) -> Int {
     var answer = 0
     var currentLocation = location
     var priorityQueue = priorities
-
+    
     while !priorityQueue.isEmpty {
         let doc = priorityQueue[0]
-
+        
         if priorityQueue.contains(where: { $0 > doc }) {
             priorityQueue.removeFirst()
             priorityQueue.append(doc)
@@ -21,6 +21,6 @@ func solution(_ priorities:[Int], _ location:Int) -> Int {
         }
         currentLocation -= 1
     }
-
+    
     return answer
 }
