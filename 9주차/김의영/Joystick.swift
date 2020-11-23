@@ -10,10 +10,6 @@ func solution(_ name:String) -> Int {
     let middleIndex = alphabets.firstIndex(of: "N")!
 
     for (index, alphabet) in name.enumerated() {
-        let currentIndex = alphabets.firstIndex(of: String(alphabet))!
-        answer += currentIndex <= middleIndex ? currentIndex : 26-currentIndex
-        if index != name.count-1 { answer += 1 }
-
         if alphabet == "A" && index+1 < name.count {
             aCount += 1
             if name[name.index(name.startIndex, offsetBy: index+1)] != "A" {
@@ -24,8 +20,12 @@ func solution(_ name:String) -> Int {
                 }
                 aCount = 0
             }
+        } else {
+            let currentIndex = alphabets.firstIndex(of: String(alphabet))!
+            answer += currentIndex <= middleIndex ? currentIndex : 26-currentIndex
         }
     }
+    answer += name.count-1
 
     return requireBack ? answer - (storeACount - backAlphabetCount) : answer
 }
