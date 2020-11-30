@@ -9,7 +9,7 @@ func solution(_ board:[[Int]]) -> Int
 
     for rowIndex in 1..<copiedBoard.count {
         for colIndex in 1..<copiedBoard[rowIndex].count {
-            if copiedBoard[rowIndex-1][colIndex] > 0 && copiedBoard[rowIndex][colIndex-1] > 0 && copiedBoard[rowIndex][colIndex] != 0 {
+            if copiedBoard[rowIndex][colIndex] == 1 {
                 copiedBoard[rowIndex][colIndex] += min(copiedBoard[rowIndex-1][colIndex], copiedBoard[rowIndex][colIndex-1], copiedBoard[rowIndex-1][colIndex-1])
                 diagnalAnxis = max(diagnalAnxis, copiedBoard[rowIndex][colIndex])
             }
