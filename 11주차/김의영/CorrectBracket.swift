@@ -12,5 +12,5 @@ func solution(_ s:String) -> Bool
         }
     }
 
-    return open == 0 ? true : false
+    return open == 0
 }
