@@ -8,9 +8,8 @@ func solution(_ dartResult:String) -> Int {
 
         switch String(dart) {
         case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
-            if dart == "0" && score.count > 0 {
-                if score[index] == 1 { score[index] = 10 }
-                else { score.append(Int(String(dart))!) }
+            if dart == "0" && score.count > 0 && score[index] == 1 {
+                score[index] = 10
             } else {
                 score.append(Int(String(dart))!)
             }
