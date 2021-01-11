@@ -25,16 +25,9 @@ func solution(_ s:String) -> Int {
         }
 
         var resultString = ""
-        for tuple in partialStringTuple {
-            resultString.append("\(tuple.1 == 1 ? "" : String(tuple.1))\(tuple.0)")
-        }
+        partialStringTuple.map { resultString.append("\($0.1 == 1 ? "" : String($0.1))\($0.0)") }
         resultArray.append(resultString)
     }
 
-    var result = 99999999
-    for rs in resultArray {
-        result = rs.count < result ? rs.count : result
-    }
-
-    return result
+    return resultArray.sorted { $0.count < $1.count }[0].count
 }
