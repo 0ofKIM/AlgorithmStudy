@@ -10,8 +10,6 @@ func solution(_ n:Int, _ computers:[[Int]]) -> Int {
     
     for (i, link) in computers.enumerated() {
         if linked[i] == 0 {
-            linked[i] = 1
-            
             dfs(link)
             networkCount += 1
         }
