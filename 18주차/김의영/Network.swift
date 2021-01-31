@@ -8,11 +8,9 @@ func solution(_ n:Int, _ computers:[[Int]]) -> Int {
         }
     }
     
-    for (i, link) in computers.enumerated() {
-        if linked[i] == 0 {
-            dfs(link)
-            networkCount += 1
-        }
+    for (i, link) in computers.enumerated() where linked[i] == 0 {
+        dfs(link)
+        networkCount += 1
     }
 
     return networkCount
