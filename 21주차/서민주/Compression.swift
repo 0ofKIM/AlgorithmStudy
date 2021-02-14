@@ -1,27 +1,28 @@
 func solution(_ msg:String) -> [Int] {
-    let AtoZ = (65...90).map({String(UnicodeScalar($0))})
+    let msgLen = msg.count
+    let msgArr = Array(msg)
+    let AtoZ = (65...90).map({ String(UnicodeScalar($0)) })
     
-    var dict = [""] + AtoZ
-    var msgArr = Array(msg)
     var result = [Int]()
+    var dict = [String: Int]()
+    AtoZ.enumerated().forEach { (idx, alpha) in dict[alpha] = idx + 1 }
     
-    var (front, back) = (0, 1)
-    var maxLen = 1
+    func getIndex(_ l: Int, _ r: Int) -> Int? {
+        return dict[String(msgArr[l...r])]
+    }
     
-    while front<back && back <= msg.count {
-        let word = String(msgArr[front..<back])
+    var (l, r, lastIdx) = (0, 0, 27)
+    
+    while l < msgLen {
+        while r < msgLen && getIndex(l, r) != nil { r += 1 }
+        result.append(getIndex(l, r-1)!)
         
-        if let index = dict.firstIndex(of: word) {
-            result.append(index)
-            front = back
-            if back < msg.count { 
-                let newWord = word + String(msgArr[back])
-                
-                dict.append(newWord)
-                maxLen = max(maxLen, newWord.count)
-                back = min(back + maxLen + 1, msg.count)
-            }
-        } else { back -= 1 }
+        if r < msgLen {
+            dict[String(msgArr[l...r])] = lastIdx
+            lastIdx += 1
+        }
+        
+        l = r
     }
     
     return result
