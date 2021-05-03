@@ -9,9 +9,8 @@ func star(_ row: Int, _ col: Int, _ number: Int) {
     
     let num = number/3
     for i in 0..<3 {
-        for j in 0..<3 {
-            if i == 1 && j == 1 { continue }
-            else { star(i*num+row, j*num+col, num) }
+        for j in 0..<3 where !(i == 1 && j == 1){
+            star(i*num+row, j*num+col, num)
         }
     }
 }
