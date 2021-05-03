@@ -1,34 +1,16 @@
+func drawPattern(_ n: Int, _ pattern: [String]) {
+    guard n > 1 else {
+        pattern.forEach { print($0) }
+        return
+    }
+
+    let row1 = pattern.map { String(repeating: $0, count: 3) }
+    let row2 = pattern.map { $0 + String(repeating: " ", count: pattern.count) + $0 }
+    let newPattern = row1 + row2 + row1
+
+    drawPattern(n/3, newPattern)
+}
+
 if let n = Int(readLine()!) {
-    var stars = Array(repeating: Array(repeating: " ", count: n), count: n)
-
-    func fillStar(_ x: Int, _ y: Int) {
-        for i in 0..<3 {
-            for j in 0..<3 {
-                stars[x+i][y+j] = i == 1 && j == 1 ? " " : "*"
-            }
-        }
-    }
-
-    func fillSpace(_ x: Int, _ y: Int) {
-        for i in 0..<3 {
-            for j in 0..<3 {
-                stars[x+i][y+j] = " "
-            }
-        }
-    }
-
-    func divideSquare(_ size: Int, _ x: Int, _ y: Int, _ space: Bool) {
-        guard size > 3 else {
-            if space { fillSpace(x, y) }
-            else { fillStar(x, y) }
-            return
-        }
-
-        let size = size/3
-        for i in 0..<9 {
-            divideSquare(size, x + (i % 3 * size), y + (i / 3 * size), i == 4 || space)
-        }
-    }
-    divideSquare(n, 0, 0, false)
-    stars.forEach { print($0.joined()) }
+    drawPattern(n, ["*"])
 }
