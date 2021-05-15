@@ -16,7 +16,7 @@ public class DecompositionSum_2231 {
         int target = scanner.nextInt();
         int answer = 0;
 
-        if (target < 10) {
+        if (target <= 10) {
             System.out.println(0);
             return;
         }
