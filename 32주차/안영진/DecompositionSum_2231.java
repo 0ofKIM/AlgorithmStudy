@@ -16,11 +16,6 @@ public class DecompositionSum_2231 {
         int target = scanner.nextInt();
         int answer = 0;
 
-        if (target <= 10) {
-            System.out.println(0);
-            return;
-        }
-
         // target 의 자릿수
         int digitCount = getDigitCount(target);
 
