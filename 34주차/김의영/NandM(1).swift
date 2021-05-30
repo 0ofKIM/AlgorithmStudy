@@ -16,6 +16,4 @@ func solution(_ numberArray: [Int]) {
     }
 }
 
-for i in 1...n {
-    solution([i])
-}
+solution([i])
