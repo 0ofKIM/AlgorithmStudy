@@ -24,7 +24,7 @@ public class NandM1_15649 {
             System.out.println(sequence);
         } else {
             used[num] = 1;
-            for (int i = num; i <= count; i++) {
+            for (int i = num + 1; i <= count; i++) {
                 if (used[i] == 0) {
                     dfs(i, count, depth, used, sequence);
                 }
