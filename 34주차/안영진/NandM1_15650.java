@@ -9,13 +9,12 @@ public class NandM1_15649 {
         int N = scanner.nextInt();
         int M = scanner.nextInt();
 
-        int[] used = new int[N+1];
         for (int i = 1; i <= N; i++) {
-            dfs(i, N, M, used, "");
+            dfs(i, N, M, "");
         }
     }
 
-    private static void dfs(int num, int count, int depth, int[] used, String sequence) {
+    private static void dfs(int num, int count, int depth, String sequence) {
         sequence = sequence + num + " ";
         depth--;
 
@@ -23,13 +22,9 @@ public class NandM1_15649 {
             // print sequence
             System.out.println(sequence);
         } else {
-            used[num] = 1;
-            for (int i = 1; i <= count; i++) {
-                if (used[i] == 0) {
-                    dfs(i, count, depth, used, sequence);
-                }
+            for (int i = num + 1; i <= count; i++) {
+                dfs(i, count, depth, sequence);
             }
         }
-        used[num] = 0;
     }
 }
