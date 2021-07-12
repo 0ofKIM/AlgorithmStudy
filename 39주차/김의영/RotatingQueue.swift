@@ -25,7 +25,6 @@ func solution() {
         } else {
             let shouldFindNumberIndex = queue.firstIndex(of: shouldFindNumbers.first!)!
             if round(CGFloat(queue.count)/2) >= CGFloat(shouldFindNumberIndex+1) {
-                //moveLeft
                 (0..<shouldFindNumberIndex).forEach { _ in
                     moveLeft()
                     result += 1
