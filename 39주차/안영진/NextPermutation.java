@@ -4,8 +4,10 @@
 public class NextPermutation {
 
     public void nextPermutation(int[] nums) {
+        final int length = nums.length;
+        
         // skip when length is 1
-        if (nums.length == 1) {
+        if (length == 1) {
             return;
         }
 
@@ -16,15 +18,12 @@ public class NextPermutation {
             index--;
         }
 
-        // if already perfect DESC, set to ASC
+        // if already perfect DESC, set to ASC and return
         if (index == -1) {
-            int length = nums.length;
-            int half = length / 2;
+            int half = length/2;
 
             for (int i = 0; i < half; i++) {
-                int temp = nums[i];
-                nums[i] = nums[length - i - 1];
-                nums[length - i - 1] = temp;
+                swapInPlace(nums, i, length - i - 1);
             }
             return;
         }
@@ -33,12 +32,11 @@ public class NextPermutation {
         int swapTarget = nums[swapTargetIdx];
 
         // find swap source
-        int swapSourceIdx = index + 1;
-        while (swapSourceIdx < nums.length && swapTarget < nums[swapSourceIdx]) {
+        int swapSourceIdx = index;
+        while (swapSourceIdx < length - 1 && swapTarget < nums[swapSourceIdx + 1]) {
             swapSourceIdx++;
         }
-        swapSourceIdx--;
-
+        
         // swap
         int swapSource = nums[swapSourceIdx];
         nums[swapSourceIdx] = swapTarget;
@@ -47,9 +45,13 @@ public class NextPermutation {
         // rearrange tail to ASC
         int half = swapTargetIdx + 1 + ((nums.length - (swapTargetIdx + 1)) / 2);
         for (int i = swapTargetIdx + 1; i < half; i++) {
-            int temp = nums[i];
-            nums[i] = nums[nums.length - (i - swapTargetIdx)];
-            nums[nums.length - (i - swapTargetIdx)] = temp;
+            swapInPlace(nums, i, length - (i - swapTargetIdx));
         }
+    }
+    
+    private void swapInPlace(int[] arr, int srcIdx, int dstIdx) {
+        int src = arr[srcIdx];
+        arr[srcIdx] = arr[dstIdx];
+        arr[dstIdx] = src;
     }
 }
