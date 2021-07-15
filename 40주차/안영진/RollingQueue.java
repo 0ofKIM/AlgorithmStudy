@@ -42,7 +42,7 @@ public class RollingQueue_1021 {
         for (int target : targets) {
 
             // when left.size == 0 && right.size == 1
-            // look with line 84
+            // look with line 67
             if (leftQueue.isEmpty()) {
                 leftQueue.offerLast(rightQueue.pollFirst());
             }
