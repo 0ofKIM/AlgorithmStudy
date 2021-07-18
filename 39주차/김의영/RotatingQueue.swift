@@ -3,6 +3,7 @@ import Foundation
 func solution() {
     let numberCount = readLine()!.split(separator: " ").map { Int(String($0))! }[0]
     var shouldFindNumbers = readLine()!.split(separator: " ").map { Int(String($0))! }
+    var firstFindNumber = shouldFindNumbers.first!
     var queue = (1...numberCount).map { $0 }
     var result = 0
     
@@ -20,10 +21,10 @@ func solution() {
     }
     
     while shouldFindNumbers.count > 0 {
-        if queue.first! == shouldFindNumbers.first! {
+        if queue.first! == firstFindNumber {
             pop()
         } else {
-            let shouldFindNumberIndex = queue.firstIndex(of: shouldFindNumbers.first!)!
+            let shouldFindNumberIndex = queue.firstIndex(of: firstFindNumber)!
             if round(CGFloat(queue.count)/2) >= CGFloat(shouldFindNumberIndex+1) {
                 (0..<shouldFindNumberIndex).forEach { _ in
                     moveLeft()
