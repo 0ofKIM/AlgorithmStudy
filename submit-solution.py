@@ -27,9 +27,11 @@ directoryPattern = re.compile(directoryPatternString)
 
 maxWeek = 1
 for directory in previousDirectories:
-  week = int(directoryPattern.match(directory).group(1))
-  if week > maxWeek:
-    maxWeek = week
+  match = directoryPattern.match(directory)
+  if match:
+    week = int(match.group(1))
+    if week > maxWeek:
+      maxWeek = week
 
 # get new directory name
 newWeekString = "%s%s" % (maxWeek + 1, directorySuffix)
