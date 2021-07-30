@@ -18,7 +18,7 @@ print("파일 경로: ", absoluteFilePath)
 commitMessage = input("커밋메시지: ")
 
 # get most recent directory
-baseDirectory = "./dirs"
+baseDirectory = "."
 previousDirectories = os.listdir(baseDirectory)
 
 directorySuffix = "주차"
