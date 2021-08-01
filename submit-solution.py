@@ -5,7 +5,7 @@ import re
 import shutil
 import subprocess
 
-BASE_DIRECTORY = "./dirs"
+BASE_DIRECTORY = "."
 DIRECTORY_SUFFIX = "주차"
 
 
@@ -74,7 +74,6 @@ def git_push_and_delete_local_branch(new_branch_name):
     git_push_cmd = "git push origin %s" % (new_branch_name)
     subprocess.call(git_push_cmd.split(" "))
 
-    # git delete local branch
     git_checkout_master_cmd = "git checkout master"
     subprocess.call(git_checkout_master_cmd.split(" "))
 
@@ -82,7 +81,6 @@ def git_push_and_delete_local_branch(new_branch_name):
     subprocess.call(git_delete_local_branch_cmd.split(" "))
 
 
-# input
 author_name = input("작성자 이름: ").replace(" ", "")
 problem_name = input("문제 이름: ").replace(" ", "")
 print("제출할 파일을 선택해주세요.")
