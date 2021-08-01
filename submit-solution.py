@@ -45,15 +45,16 @@ def check_before_execute(new_absolute_file_path, new_branch_name, commit_message
     _confirm = input("(y/n) :")
     return _confirm
 
+
 def git_checkout_from_master(new_branch_name):
     git_checkout_master_cmd = "git checkout master"
     subprocess.call(git_checkout_master_cmd.split(" "))
 
-    GIT_PULL_MASTER_CMD = "git pull origin master"
-    subprocess.call(GIT_PULL_MASTER_CMD.split(" "))
+    git_pull_master_cmd = "git pull origin master"
+    subprocess.call(git_pull_master_cmd.split(" "))
 
-    GIT_CHECKOUT_CMD = "git checkout -b %s" % (new_branch_name)
-    subprocess.call(GIT_CHECKOUT_CMD.split(" "))
+    git_checkout_cmd = "git checkout -b %s" % (new_branch_name)
+    subprocess.call(git_checkout_cmd.split(" "))
 
 
 def git_add_and_commit(new_absolute_file_path, commit_message):
@@ -86,13 +87,13 @@ author_name = input("작성자 이름: ").replace(" ", "")
 problem_name = input("문제 이름: ").replace(" ", "")
 print("제출할 파일을 선택해주세요.")
 tkinter.Tk().withdraw()
-absoluteFilePath = tkinter.filedialog.askopenfilename(title="제출할 파일을 선택해주세요.")
-print("파일 경로: ", absoluteFilePath)
+absolute_file_path = tkinter.filedialog.askopenfilename(title="제출할 파일을 선택해주세요.")
+print("파일 경로: ", absolute_file_path)
 commit_message = input("커밋메시지: ")
 
-newWeekString, new_directory_name = get_next_directory_name(BASE_DIRECTORY, DIRECTORY_SUFFIX)
-new_branch_name = "feature/%s(%s)-%s" % (author_name, newWeekString, problem_name)
-new_absolute_file_path = get_submit_file_path(absoluteFilePath)
+new_week_string, new_directory_name = get_next_directory_name(BASE_DIRECTORY, DIRECTORY_SUFFIX)
+new_branch_name = "feature/%s(%s)-%s" % (author_name, new_week_string, problem_name)
+new_absolute_file_path = get_submit_file_path(absolute_file_path)
 
 confirm = check_before_execute(new_absolute_file_path, new_branch_name, commit_message)
 if confirm != 'y':
@@ -105,8 +106,8 @@ os.mkdir(new_directory_name)
 print("* [INFO] Create and checkout to branch [ %s ]" % (new_branch_name))
 git_checkout_from_master(new_branch_name)
 
-print("* [INFO] Copy file [ %s ] to [ %s ]" % (absoluteFilePath, new_absolute_file_path))
-shutil.copy(absoluteFilePath, new_absolute_file_path)
+print("* [INFO] Copy file [ %s ] to [ %s ]" % (absolute_file_path, new_absolute_file_path))
+shutil.copy(absolute_file_path, new_absolute_file_path)
 
 print("* [INFO] Git add and commit")
 git_add_and_commit(new_absolute_file_path, commit_message)
